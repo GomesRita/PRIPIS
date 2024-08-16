@@ -1,0 +1,32 @@
+//Atualize o sistema
+
+apt-get update
+apt-get upgrade
+
+//instalação do xdotool --Simula o acionamento de teclas
+sudo apt-get install xdotool
+
+//acessar o arquivo autostart no camido
+sudo nano .config/lxsession/LXDE-pi/autostart
+
+//Configure da seguinte forma:
+
+//Para impedir que a tela se apague por inatividade ou economia de energia
+@xset off 
+@xset -dpms
+@xset s noblank
+
+
+//Executa o chromium em modo kiosk na página do imatra
+@chromium-browser --kiosk https://imatra.ifrn.local/login
+
+
+//Após 5 segundos coloca a interface em tela cheia
+sleep 5
+xdotool search --onlycisible --class "Chromium" windowactivate key f11
+
+
+
+Para desabilitar o modo kiosk precione Ctrl + Alt + T, isso irá abrir o terminal cmd, 
+acesse o arquivo de configuração autostart em sudo nano .config/lxsession/LXDE-pi/autostart
+e apague as configurações. Após fazer isso execute sudo reboot as configurações serão aplicadas.
